@@ -69,4 +69,14 @@ public class Restaurant {
     public String getLocation() {
         return location;
     }
+
+    public int getOrderCost(String... items) {
+        return Arrays.stream(items)
+                .map((itemName) -> this.menu.stream()
+                        .filter(item -> itemName.equalsIgnoreCase(item.getName()))
+                        .findFirst().orElseThrow(() -> {
+                            throw new itemNotFoundException(itemName);
+                        }).getPrice())
+                .reduce(0, Integer::sum);
+    }
 }
