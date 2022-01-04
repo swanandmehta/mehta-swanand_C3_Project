@@ -6,8 +6,11 @@ public class RestaurantService {
     private static List<Restaurant> restaurants = new ArrayList<>();
 
     public Restaurant findRestaurantByName(String restaurantName){
-        return null;
-        //DELETE ABOVE STATEMENT AND WRITE CODE HERE
+        return RestaurantService.restaurants.stream().
+                                            filter(restaurant -> restaurant.getName().equalsIgnoreCase(restaurantName)).
+                                            findFirst().orElseThrow(() -> {
+                                                throw new restaurantNotFoundException(restaurantName);
+                                            });
     }
 
 

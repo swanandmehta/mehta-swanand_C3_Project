@@ -1,4 +1,4 @@
-public class itemNotFoundException extends Throwable {
+public class itemNotFoundException extends RuntimeException {
     public itemNotFoundException(String itemName) {
         super(itemName);
     }
